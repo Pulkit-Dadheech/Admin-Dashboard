@@ -1,0 +1,14 @@
+.header {
+    grid-area: header;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-inline: 1rem;
+    padding-block: 0.2rem;
+    background-color: white;
+
+}
+.header-name{
+    font-weight: 900;
+}

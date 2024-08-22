@@ -1,0 +1,10 @@
+.home{
+    grid-area: home;
+    margin: 1rem;
+}
+.home-name{
+    padding-block: 0.5rem;
+    font-weight: 900;
+    font-size: larger;
+}
+
