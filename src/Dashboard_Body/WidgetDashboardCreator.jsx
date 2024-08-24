@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { updateSelectedDashboard } from "../features/widgets/dashboardSlice";
 import { Chart as ChartJs, ArcElement, Tooltip, Legend, CategoryScale, LinearScale, BarElement } from 'chart.js';
 import { Doughnut, Bar } from 'react-chartjs-2';
-import ChartLegend from './ChartLegend'; // Import the new legend component
+import ChartLegend from './ChartLegend';
 
 ChartJs.register(ArcElement, Tooltip, Legend, CategoryScale, LinearScale, BarElement);
 
@@ -32,15 +32,9 @@ export default function WidgetDashboardCreator({ toggleSiderbar }) {
                     const datasets = context.chart.data.datasets;
                     const totalDatasets = datasets.length;
 
-                    if (datasetIndex === 0) {
-                        return { topLeft: 20, bottomLeft: 20, topRight: 0, bottomRight: 0 };
-                    }
-
                     if (datasetIndex === totalDatasets - 1) {
                         return { topLeft: 0, bottomLeft: 0, topRight: 20, bottomRight: 20 };
                     }
-
-                    return 0;
                 },
             },
         },
@@ -86,7 +80,7 @@ export default function WidgetDashboardCreator({ toggleSiderbar }) {
                                                             <Bar
                                                                 data={widget.widget_data[0]}
                                                                 options={barChartOptions}
-                                                                height={80}
+                                                                height={60}
                                                             />
                                                         )
                                                     )}
@@ -100,6 +94,12 @@ export default function WidgetDashboardCreator({ toggleSiderbar }) {
                                 ) : (
                                     <button className='add-widget-button' onClick={() => handleAddButtonClick(dashboard.id)}>+Add Widget</button>
                                 )}
+                            </div>
+                        ))}
+
+                        {Array(3 - dashboard.dashboard_data.length).fill().map((_, index) => (
+                            <div key={`empty-${index}`} className="widget-container">
+                                <button className='add-widget-button' onClick={() => handleAddButtonClick(dashboard.id)}>+Add Widget</button>
                             </div>
                         ))}
                     </div>
