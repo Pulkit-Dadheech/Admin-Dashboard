@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import WidgetDashboardCreator from './WidgetDashboardCreator';
+import WidgetDashboardCreator from './Home_Components/WidgetDashboardCreator';
 import SidebarMainPage from "../sidebar/SidebarMainPage";
 import './Home.css'; // Assuming you have a CSS file for styling
 

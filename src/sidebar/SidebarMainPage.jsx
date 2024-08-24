@@ -36,7 +36,7 @@ export default function SidebarMainPage({ toggleSidebar }) {
                     <button onClick={toggleSidebar} className={'remove-sidebar-button'}>X</button>
                 </span>
             </div>
-            <DashboardList />
+            <DashboardList/>
             {dashboardData.subDashboard.map((dashboard) => {
                 if (dashboard.id === selectedDashboardId) {
                     return (
@@ -51,7 +51,7 @@ export default function SidebarMainPage({ toggleSidebar }) {
                                             widgetId: widget.id
                                         })}
                                     />
-                                    <label>{widget.widget_name}</label>
+                                    <label className={'sidebar-widget-name'}>{widget.widget_name}</label>
                                 </div>
                             )
                         ))
@@ -60,20 +60,28 @@ export default function SidebarMainPage({ toggleSidebar }) {
             })}
             <div className='add-widget-section'>
                 {!isFormVisible ? (
-                    <button onClick={() => setIsFormVisible(true)}>Add New Widget</button>
+                    <button className="add-widget-button" onClick={() => setIsFormVisible(true)}>
+                        + Add New Widget
+                    </button>
                 ) : (
-                    <form onSubmit={handleFormSubmit}>
+                    <form className="widget-form" onSubmit={handleFormSubmit}>
                         <input
                             type="text"
+                            className="widget-input"
                             value={newWidgetName}
                             onChange={(e) => setNewWidgetName(e.target.value)}
                             placeholder="Widget Name"
                         />
-                        <button type="submit">Add Widget</button>
-                        <button type="button" onClick={() => setIsFormVisible(false)}>Cancel</button>
+                        <div className="form-buttons">
+                            <button type="submit" className="submit-button">Add Widget</button>
+                            <button type="button" className="cancel-button"
+                                    onClick={() => setIsFormVisible(false)}>Cancel
+                            </button>
+                        </div>
                     </form>
                 )}
             </div>
+
         </div>
     );
 }
