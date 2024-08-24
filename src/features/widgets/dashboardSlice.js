@@ -95,28 +95,33 @@ const initialState = {
                     widget_name: 'Image Security Issues',
                     widget_type: 'Bar',
                     widget_data: [{
-                        labels: ['Vulnerabilities'],
+                        labels: ['Total Images'],
                         datasets: [
                             {
                                 label: 'Critical',
-                                data: [9],
-                                backgroundColor: '#b71c1c',
+                                data: [2],
+                                backgroundColor: '#850808',
                             },
                             {
                                 label: 'High',
-                                data: [150],
-                                backgroundColor: '#f57c00',
+                                data: [2],
+                                backgroundColor: '#e72e48',
                             },
                             {
                                 label: 'Medium',
-                                data: [400],
-                                backgroundColor: '#ffb300',
+                                data: [3],
+                                backgroundColor: '#d35e03',
                             },
                             {
                                 label: 'Low',
-                                data: [911],
-                                backgroundColor: '#cfd8dc',
+                                data: [2],
+                                backgroundColor: '#ffb300',
                             },
+                            {
+                                label: 'Least',
+                                data: [4],
+                                backgroundColor: '#84898c',
+                            }
                         ],
                     }],
                     widget_selected: true
