@@ -7,4 +7,14 @@
     font-weight: 900;
     font-size: larger;
 }
+.add-widget-button {
+    padding: 1rem;
+    background-color: lightblue;
+    color: white;
+    border: none;
+    border-radius: 1rem;
+    cursor: pointer;
+    font-weight: 900;
+}
+
 
