@@ -1,8 +1,9 @@
 import DashboardList from "./DashboardList";
 import { useSelector, useDispatch } from "react-redux";
-import { toggleWidgetSelection, addWidget } from "../features/widgets/dashboardSlice";
+import { toggleWidgetSelection, addWidget, updateWidgetName } from "../features/widgets/dashboardSlice"; // Import updateWidgetName action
 import "./SidebarMainPage.css";
 import React, { useState } from "react";
+import EditableLabel from './EditableLabel'; // Import EditableLabel component
 
 export default function SidebarMainPage({ toggleSidebar }) {
     const dispatch = useDispatch();
@@ -25,6 +26,14 @@ export default function SidebarMainPage({ toggleSidebar }) {
             }));
             setNewWidgetName("");
             setIsFormVisible(false);
+        }
+    }
+
+    function handleSaveWidgetName(dashboardId, widgetId, widgetName) {
+        if (widgetName.trim() !== "") {
+            dispatch(updateWidgetName({ dashboardId, widgetId, widgetName }));
+        } else {
+            alert('Widget name cannot be empty');
         }
     }
 
@@ -51,11 +60,14 @@ export default function SidebarMainPage({ toggleSidebar }) {
                                             widgetId: widget.id
                                         })}
                                     />
-                                    <label className={'sidebar-widget-name'}>{widget.widget_name}</label>
+                                    <EditableLabel
+                                        initialValue={widget.widget_name}
+                                        onSave={(newName) => handleSaveWidgetName(dashboard.id, widget.id, newName)}
+                                    />
                                 </div>
                             )
                         ))
-                    )
+                    );
                 }
             })}
             <div className='add-widget-section'>
@@ -81,7 +93,6 @@ export default function SidebarMainPage({ toggleSidebar }) {
                     </form>
                 )}
             </div>
-
         </div>
     );
 }

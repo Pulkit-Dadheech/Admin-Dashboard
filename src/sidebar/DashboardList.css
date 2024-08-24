@@ -11,4 +11,39 @@
     font-size: 1.3rem;
     font-weight: bold;
 }
+/* SidebarMainPage.css */
+.sidebar-widget-list {
+    display: flex;
+    align-items: center; /* Align items vertically */
+    margin-bottom: 10px; /* Add some space between items */
+}
+
+.sidebar-widget-list input[type="checkbox"] {
+    margin-right: 10px; /* Space between checkbox and label */
+}
+
+.sidebar-widget-name {
+    margin: 0; /* Remove default margin */
+}
+
+
+.editable-label {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.editable-input {
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: auto;
+}
+
+.editable-text {
+    cursor: pointer;
+    font-size: 1rem;
+}
+
 
