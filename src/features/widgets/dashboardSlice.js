@@ -11,7 +11,7 @@ const initialState = {
                     widget_name: 'Cloud Accounts',
                     widget_type: 'Doughnut',
                     widget_data: [{
-                        labels: ["Connected", "NotConnected"],
+                        labels: ["Connected", "Not Connected"],
                         datasets: [{
                             data: [2, 2],
                             backgroundColor: ['#1e90ff', '#87cefa'],
@@ -32,14 +32,6 @@ const initialState = {
                     }],
                     widget_selected: true
                 },
-                {
-                    id: nanoid(),
-                    widget_name: '',
-                    widget_type: 'Doughnut',
-                    widget_data: [],
-                    widget_selected: true,
-
-                }
             ],
         },
         {
@@ -61,13 +53,6 @@ const initialState = {
                     widget_data: [],
                     widget_selected: true
                 },
-                {
-                    id: nanoid(),
-                    widget_name: '',
-                    widget_type: 'Doughnut',
-                    widget_data: [],
-                    widget_selected: true
-                }
             ]
         },
         {
@@ -79,27 +64,27 @@ const initialState = {
                     widget_name: 'Image Risk Assessment',
                     widget_type: 'Bar',
                     widget_data: [{
-                        labels: ['Vulnerabilities'],
+                        labels: ['Total Vulnerabilities'],
                         datasets: [
                             {
                                 label: 'Critical',
                                 data: [9],
-                                backgroundColor: '#b71c1c', // Critical - Red
+                                backgroundColor: '#b71c1c',
                             },
                             {
                                 label: 'High',
                                 data: [150],
-                                backgroundColor: '#f57c00', // High - Orange
+                                backgroundColor: '#f57c00',
                             },
                             {
                                 label: 'Medium',
                                 data: [400],
-                                backgroundColor: '#ffb300', // Medium - Yellow
+                                backgroundColor: '#ffb300',
                             },
                             {
                                 label: 'Low',
                                 data: [911],
-                                backgroundColor: '#cfd8dc', // Low - Grey
+                                backgroundColor: '#cfd8dc',
                             },
                         ],
                     }],
@@ -109,13 +94,38 @@ const initialState = {
                     id: nanoid(),
                     widget_name: 'Image Security Issues',
                     widget_type: 'Bar',
-                    widget_data: [],
+                    widget_data: [{
+                        labels: ['Vulnerabilities'],
+                        datasets: [
+                            {
+                                label: 'Critical',
+                                data: [9],
+                                backgroundColor: '#b71c1c',
+                            },
+                            {
+                                label: 'High',
+                                data: [150],
+                                backgroundColor: '#f57c00',
+                            },
+                            {
+                                label: 'Medium',
+                                data: [400],
+                                backgroundColor: '#ffb300',
+                            },
+                            {
+                                label: 'Low',
+                                data: [911],
+                                backgroundColor: '#cfd8dc',
+                            },
+                        ],
+                    }],
                     widget_selected: true
                 }
             ]
         }
     ],
     selectedDashboardId: '0F',
+    searchData: '',
 };
 
 export const dashboardSlice = createSlice({
@@ -175,6 +185,21 @@ export const dashboardSlice = createSlice({
             }
         },
 
+        updateWidgetName: (state, action) => {
+            const {dashboardId, widgetId, widgetName} = action.payload;
+            const dashboard = state.subDashboard.find(
+                (dashboard) => dashboard.id === dashboardId
+            );
+            if (dashboard) {
+                const widget = dashboard.dashboard_data.find(
+                    (widget) => widget.id === widgetId
+                );
+                if (widget) {
+                    widget.widget_name = widgetName;
+                }
+            }
+        },
+
         updateWidget: (state, action) => {
             const {dashboardId, widgetId, newWidgetData} = action.payload;
             const dashboard = state.subDashboard.find(
@@ -207,6 +232,10 @@ export const dashboardSlice = createSlice({
                     widget.widget_selected = !widget.widget_selected;
                 }
             }
+        },
+        updateSearchData : (state,action) =>{
+            const {name} = action.payload;
+            state.searchData = name;
         }
     }
 });
@@ -217,9 +246,11 @@ export const {
     updateDashboardName,
     addWidget,
     removeWidget,
+    updateWidgetName,
     updateWidget,
     toggleWidgetSelection,
     updateSelectedDashboard,
+    updateSearchData,
 } = dashboardSlice.actions;
 
 export default dashboardSlice.reducer;
