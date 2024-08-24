@@ -1,0 +1,14 @@
+.sidebar-dashboard-name-container{
+    display: flex;
+    margin-left: 1rem;
+}
+
+.sidebar-dashboard-name{
+    /*margin: 1rem;*/
+    padding-inline: 2rem;
+    padding-block: 1rem;
+
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+

@@ -1,0 +1,47 @@
+/* SidebarMainPage.css */
+/* SidebarMainPage.css */
+.sidebar-header{
+    display: flex;              /* Use flexbox layout */
+    justify-content: space-between; /* Space out children items */
+    align-items: center;
+    background-color: darkblue;
+    color: white;
+    padding: 1rem;
+    font-weight: bolder;
+}
+.remove-sidebar-button{
+    color: white;
+    font-size: 1rem;
+    border: none;
+    background-color: darkblue;
+    box-shadow: none; /* Remove any shadow */
+    outline: none;
+}
+.sidebar {
+    width:35%;
+    height: 100vh;
+    background-color: rgb(233, 247, 252);
+    position: fixed;
+    top: 0;
+    right: -50%;
+    transition: right 0.3s ease;
+    z-index: 1000;
+    color: black;
+    overflow-y: auto;
+    backdrop-filter: blur(900);
+
+}
+
+.sidebar-widget-list{
+    margin: 1rem;
+    padding-block: 0.5rem;
+    padding-inline: 1rem;
+    font-weight: bolder;
+    font-size: 1.1rem;
+}
+
+.sidebar.active{
+    right: 0; /* Slide in when the 'show' class is added */
+}
+
+
