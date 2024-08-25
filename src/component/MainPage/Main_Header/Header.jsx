@@ -1,7 +1,7 @@
 import { BsSearch } from 'react-icons/bs';
 import './Header.css';
 import { useSelector, useDispatch } from "react-redux";
-import { updateSearchData } from "../features/widgets/dashboardSlice";
+import { updateSearchData } from "../../../features/widgets/dashboardSlice";
 import { useState, useEffect } from "react";
 
 export default function Header() {

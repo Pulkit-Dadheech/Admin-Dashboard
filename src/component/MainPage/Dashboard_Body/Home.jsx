@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import WidgetDashboardCreator from './Home_Components/WidgetDashboardCreator';
-import SidebarMainPage from "../sidebar/SidebarMainPage";
+import WidgetDashboardContainer from './Home_Components/WidgetDashboardContainer/WidgetDashboardContainer';
+import SidebarMainPage from "../../Sidebar/Sidebar_MainPage/SidebarMainPage";
 import './Home.css'; // Assuming you have a CSS file for styling
 
 const Home = () => {
@@ -22,7 +22,7 @@ const Home = () => {
             </div>
 
             <div className="home-content">
-                <WidgetDashboardCreator toggleSiderbar={toggleSidebar} />
+                    <WidgetDashboardContainer toggleSidebar={toggleSidebar} />
                 <div className={`sidebar ${isActive ? 'active' : ''}`}>
                     <SidebarMainPage toggleSidebar={toggleSidebar}/>
                 </div>

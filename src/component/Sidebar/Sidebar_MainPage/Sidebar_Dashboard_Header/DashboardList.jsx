@@ -1,6 +1,6 @@
 import { useSelector,useDispatch } from "react-redux";
 import "./DashboardList.css";
-import {updateSelectedDashboard } from "../features/widgets/dashboardSlice";
+import {updateSelectedDashboard } from "../../../../features/widgets/dashboardSlice";
 
 export default function DashboardList() {
     const dashboardData = useSelector((state) => state.subDashboard);
@@ -13,7 +13,6 @@ export default function DashboardList() {
     return (
         <div className="sidebar-dashboard-name-container">
             {dashboardData.subDashboard.map((dashboard) => {
-                console.log(`Dashboard ID: ${dashboard.id}, Selected ID: ${selectedDashboardId}`);
                 return (
                     <button
                         className="sidebar-dashboard-name"

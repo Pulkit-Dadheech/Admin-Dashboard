@@ -1,8 +1,6 @@
-/* SidebarMainPage.css */
-/* SidebarMainPage.css */
 .sidebar-header{
-    display: flex;              /* Use flexbox layout */
-    justify-content: space-between; /* Space out children items */
+    display: flex;
+    justify-content: space-between;
     align-items: center;
     background-color: darkblue;
     color: white;
@@ -14,7 +12,7 @@
     font-size: 1rem;
     border: none;
     background-color: darkblue;
-    box-shadow: none; /* Remove any shadow */
+    box-shadow: none;
     outline: none;
 }
 .sidebar {
@@ -39,6 +37,7 @@
     font-weight: bolder;
     font-size: 1.1rem;
     border: 1px solid black;
+    color: blue;
 }
 .sidebar-widget-name{
     margin-left: 0.2rem;
