@@ -1,14 +1,15 @@
 import './WidgetDashboardCreator.css';
-import { useSelector, useDispatch } from "react-redux";
-import { updateSelectedDashboard } from "../../features/widgets/dashboardSlice";
-import { Chart as ChartJs, ArcElement, Tooltip, Legend, CategoryScale, LinearScale, BarElement } from 'chart.js';
-import { Doughnut, Bar } from 'react-chartjs-2';
+import {useSelector, useDispatch} from "react-redux";
+import {updateSelectedDashboard} from "../../features/widgets/dashboardSlice";
+import {Chart as ChartJs, ArcElement, Tooltip, Legend, CategoryScale, LinearScale, BarElement} from 'chart.js';
+import {Doughnut, Bar} from 'react-chartjs-2';
 import ChartLegend from './ChartLegend';
 import React from "react";
+import { BsGraphUp } from "react-icons/bs";
 
 ChartJs.register(ArcElement, Tooltip, Legend, CategoryScale, LinearScale, BarElement);
 
-export default function WidgetDashboardCreator({ toggleSiderbar }) {
+export default function WidgetDashboardCreator({toggleSiderbar}) {
     const dashboardData = useSelector(state => state.subDashboard);
     const searchData = useSelector(state => state.subDashboard.searchData); // Get search data
     const dispatch = useDispatch();
@@ -18,8 +19,8 @@ export default function WidgetDashboardCreator({ toggleSiderbar }) {
         responsive: false,
         maintainAspectRatio: true,
         scales: {
-            x: { stacked: true, display: false },
-            y: { stacked: true, display: false },
+            x: {stacked: true, display: false},
+            y: {stacked: true, display: false},
         },
         plugins: {
             legend: {
@@ -34,7 +35,7 @@ export default function WidgetDashboardCreator({ toggleSiderbar }) {
                     const totalDatasets = datasets.length;
 
                     if (datasetIndex === totalDatasets - 1) {
-                        return { topLeft: 0, bottomLeft: 0, topRight: 20, bottomRight: 20 };
+                        return {topLeft: 0, bottomLeft: 0, topRight: 20, bottomRight: 20};
                     }
                 },
             },
@@ -42,7 +43,7 @@ export default function WidgetDashboardCreator({ toggleSiderbar }) {
     };
 
     function handleAddButtonClick(id) {
-        dispatch(updateSelectedDashboard({ id }));
+        dispatch(updateSelectedDashboard({id}));
         toggleSiderbar();
     }
 
@@ -59,7 +60,7 @@ export default function WidgetDashboardCreator({ toggleSiderbar }) {
         <>
             {filteredDashboards.map((dashboard) => (
                 <div key={dashboard.id}>
-                    <p className="widget-dashboard-header" style={{ marginLeft: '1rem' }}>
+                    <p className="widget-dashboard-header" style={{marginLeft: '1rem'}}>
                         {dashboard.dashboard_category}
                     </p>
                     <div className="widget-dashboard-container">
@@ -71,10 +72,14 @@ export default function WidgetDashboardCreator({ toggleSiderbar }) {
                                     {widget.widget_selected && widget.widget_name !== '' ? (
                                         <>
                                             <div className="widget-title">{widget.widget_name}</div>
-                                            <div>
-                                                <span className={'legend-text'} style={{fontSize: "30px"}}>{widget.widget_data[0]?.datasets[0]?.data.reduce((acc, value) => acc + value, 0)} </span>
-                                                <span>{widget.widget_data[0]?.datasets[0]?.label && widget.widget_data[0].datasets[0].label}</span>
-                                            </div>
+                                            {widget.widget_data?.[0]?.datasets?.[0]?.label && (
+                                                <>
+                                                    <span className="legend-text" style={{fontSize: "30px"}}>
+                                                        {widget.widget_data[0].datasets[0].data.reduce((acc, value) => acc + value, 0)}
+                                                    </span>
+                                                    <span>{widget.widget_data[0].datasets[0].label}</span>
+                                                </>
+                                            )}
                                             {widget.widget_data && widget.widget_data.length > 0 && widget.widget_data[0].labels ? (
                                                 <div className="widget-body-container">
                                                     <div className="chart-legend-container">
@@ -108,11 +113,18 @@ export default function WidgetDashboardCreator({ toggleSiderbar }) {
                                                     </div>
                                                 </div>
                                             ) : (
-                                                <div className='widget-body-container'>Graph data not found</div>
+                                                <>
+
+                                                <div className='widget-body-container'>
+                                                    <BsGraphUp size={25}/>
+                                                    <div className={'widget-body-not-found-text'}>Graph data not found</div>
+                                                </div>
+                                                </>
                                             )}
                                         </>
                                     ) : (
-                                        <button className='add-widget-button' onClick={() => handleAddButtonClick(dashboard.id)}>+Add Widget</button>
+                                        <button className='add-widget-button'
+                                                onClick={() => handleAddButtonClick(dashboard.id)}>+Add Widget</button>
                                     )}
                                 </div>
                             ))}
@@ -120,7 +132,9 @@ export default function WidgetDashboardCreator({ toggleSiderbar }) {
                         {/* Only show empty containers if there are no widgets matching the search criteria and the search is not active */}
                         {!searchData && Array(3 - dashboard.dashboard_data.length).fill().map((_, index) => (
                             <div key={`empty-${index}`} className="widget-container">
-                                <button className='add-widget-button' onClick={() => handleAddButtonClick(dashboard.id)}>+Add Widget</button>
+                                <button className='add-widget-button'
+                                        onClick={() => handleAddButtonClick(dashboard.id)}>+Add Widget
+                                </button>
                             </div>
                         ))}
                     </div>

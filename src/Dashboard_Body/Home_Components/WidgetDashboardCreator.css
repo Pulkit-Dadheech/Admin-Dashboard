@@ -29,9 +29,14 @@
 
 .widget-body-container {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     height: 12rem;
+
+}
+.widget-body-not-found-text{
+    padding-top: 1rem;
 }
 
 .chart-legend-container {
