@@ -1,9 +1,8 @@
-// src/components/Widget.js
 import React from "react";
-import { Doughnut, Bar } from 'react-chartjs-2';
+import { Doughnut, Bar, PolarArea } from 'react-chartjs-2';
 import { BsGraphUp } from "react-icons/bs";
 import ChartLegend from "../ChartLegend";
-import '../../../../../utils/chartConfig.js'; // Ensure Chart.js elements are registered
+import '../../../../../utils/chartConfig.js';
 import './WidgetDashboardContainer.css';
 
 const Widget = ({ widget, onAddButtonClick }) => {
@@ -30,6 +29,22 @@ const Widget = ({ widget, onAddButtonClick }) => {
                     }
                 },
             },
+        },
+    };
+
+    const polarAreaChartOptions = {
+        responsive: false,
+        maintainAspectRatio: true,
+        scales: {
+            r: {
+                angleLines: {
+                    display: true,
+                },
+                suggestedMin: 0,
+            },
+        },
+        plugins: {
+            legend: { display: false },
         },
     };
 
@@ -67,15 +82,19 @@ const Widget = ({ widget, onAddButtonClick }) => {
                                             }}
                                         />
                                     </div>
-                                ) : (
-                                    widget.widget_type === 'Bar' && (
-                                        <Bar
-                                            data={widget.widget_data[0]}
-                                            options={barChartOptions}
-                                            height={60}
-                                        />
-                                    )
-                                )}
+                                ) : widget.widget_type === 'Bar' ? (
+                                    <Bar
+                                        data={widget.widget_data[0]}
+                                        options={barChartOptions}
+                                        height={60}
+                                    />
+                                ) : widget.widget_type === 'PolarArea' ? (
+                                    <PolarArea
+                                        data={widget.widget_data[0]}
+                                        options={polarAreaChartOptions}
+                                        height={190}
+                                    />
+                                ) : null}
                                 <ChartLegend data={widget.widget_data[0]} type={widget.widget_type} />
                             </div>
                         </div>

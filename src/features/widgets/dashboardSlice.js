@@ -42,8 +42,22 @@ const initialState = {
                 {
                     id: nanoid(),
                     widget_name: 'Top 5 Namespace Specific Alerts',
-                    widget_type: 'Doughnut',
-                    widget_data: [],
+                    widget_type: 'PolarArea',
+                    widget_data: [ {
+                        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple'],
+                        datasets: [
+                            {
+                                data: [12, 19, 3, 5, 2],
+                                backgroundColor: [
+                                    '#FF6384',
+                                    '#36A2EB',
+                                    '#FFCE56',
+                                    '#4BC0C0',
+                                    '#9966FF',
+                                ],
+                            }
+                        ]
+                    }],
                     widget_selected: true
                 },
                 {
@@ -144,6 +158,22 @@ export const dashboardSlice = createSlice({
                 });
             }
         },
+        addWidgetWithData(state, action) {
+            const { dashboardId, widgetName,widgetType,widgetData } = action.payload;
+            const dashboard = state.subDashboard.find(d => d.id === dashboardId);
+            if (dashboard) {
+                if (!dashboard.dashboard_data) {
+                    dashboard.dashboard_data = [];
+                }
+                dashboard.dashboard_data.push({
+                    id: nanoid(),
+                    widget_name: widgetName,
+                    widget_type: widgetType,
+                    widget_data: widgetData,
+                    widget_selected: true
+                });
+            }
+        },
 
         removeWidget: (state, action) => {
             const { dashboardId, widgetId } = action.payload;
@@ -217,6 +247,7 @@ export const {
     removeDashboard,
     updateDashboardName,
     addWidget,
+    addWidgetWithData,
     removeWidget,
     updateWidgetName,
     updateWidget,

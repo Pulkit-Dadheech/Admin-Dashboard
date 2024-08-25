@@ -1,10 +1,13 @@
+// src/components/Sidebar/SidebarMainPage.jsx
+
+import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { toggleWidgetSelection, updateWidgetName, removeWidget } from '../../../features/widgets/dashboardSlice';
 import DashboardList from "./Sidebar_Dashboard_Header/DashboardList";
-import { useSelector, useDispatch } from "react-redux";
-import { toggleWidgetSelection, addWidget, updateWidgetName, removeWidget } from "../../../features/widgets/dashboardSlice"; // Import deleteWidget action
-import "./SidebarMainPage.css";
-import React, { useState } from "react";
 import EditableLabel from './Widget_Name_Editor/EditableLabel';
 import SidebarHeader from "../Sidebar_Header/SidebarHeader";
+import AddWidgetForm from './AddWidgetForm'; // Import the new form component
+import './SidebarMainPage.css';
 
 export default function SidebarMainPage({ toggleSidebar }) {
     const dispatch = useDispatch();
@@ -12,22 +15,9 @@ export default function SidebarMainPage({ toggleSidebar }) {
     const selectedDashboardId = dashboardData.selectedDashboardId;
 
     const [isFormVisible, setIsFormVisible] = useState(false);
-    const [newWidgetName, setNewWidgetName] = useState("");
 
     function handleCheckboxChange(data) {
         dispatch(toggleWidgetSelection(data));
-    }
-
-    function handleFormSubmit(event) {
-        event.preventDefault();
-        if (newWidgetName.trim() !== "") {
-            dispatch(addWidget({
-                dashboardId: selectedDashboardId,
-                widgetName: newWidgetName
-            }));
-            setNewWidgetName("");
-            setIsFormVisible(false);
-        }
     }
 
     function handleSaveWidgetName(dashboardId, widgetId, widgetName) {
@@ -46,8 +36,8 @@ export default function SidebarMainPage({ toggleSidebar }) {
 
     return (
         <div className='sidebar-content'>
-            <SidebarHeader toggleSidebar={toggleSidebar}/>
-            <DashboardList/>
+            <SidebarHeader toggleSidebar={toggleSidebar} />
+            <DashboardList />
             {dashboardData.subDashboard.map((dashboard) => {
                 if (dashboard.id === selectedDashboardId) {
                     return (
@@ -80,21 +70,10 @@ export default function SidebarMainPage({ toggleSidebar }) {
                         + Add New Widget
                     </button>
                 ) : (
-                    <form className="widget-form" onSubmit={handleFormSubmit}>
-                        <input
-                            type="text"
-                            className="widget-input"
-                            value={newWidgetName}
-                            onChange={(e) => setNewWidgetName(e.target.value)}
-                            placeholder="Widget Name"
-                        />
-                        <div className="form-buttons">
-                            <button type="submit" className="submit-button">Add Widget</button>
-                            <button type="button" className="cancel-button"
-                                    onClick={() => setIsFormVisible(false)}>Cancel
-                            </button>
-                        </div>
-                    </form>
+                    <AddWidgetForm
+                        selectedDashboardId={selectedDashboardId}
+                        onClose={() => setIsFormVisible(false)}
+                    />
                 )}
             </div>
         </div>

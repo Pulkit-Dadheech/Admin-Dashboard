@@ -1,4 +1,4 @@
-import { Chart as ChartJs, ArcElement, Tooltip, Legend, CategoryScale, LinearScale, BarElement } from 'chart.js';
+import { Chart as ChartJs, ArcElement, Tooltip, Legend, CategoryScale, LinearScale, BarElement,RadialLinearScale } from 'chart.js';
 
 ChartJs.register(
     ArcElement,
@@ -6,7 +6,8 @@ ChartJs.register(
     Legend,
     CategoryScale,
     LinearScale,
-    BarElement
+    BarElement,
+    RadialLinearScale
 );
 
 export default ChartJs;

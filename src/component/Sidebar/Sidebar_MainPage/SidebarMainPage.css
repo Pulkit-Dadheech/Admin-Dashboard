@@ -101,43 +101,6 @@
 
 }
 
-.form-buttons {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-}
 
-.submit-button {
-    padding: 0.5rem 1rem;
-    font-size: 1rem;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.submit-button:hover {
-    background-color: #0056b3;
-}
-
-.cancel-button {
-    padding: 0.5rem 1rem;
-    font-size: 1rem;
-    background-color: #f44336;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    align-items: end;
-    justify-items: center;
-    align-self: end;
-}
-
-.cancel-button:hover {
-    background-color: #d32f2f;
-}
 
 
