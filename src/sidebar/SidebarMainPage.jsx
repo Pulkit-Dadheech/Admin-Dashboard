@@ -72,7 +72,7 @@ export default function SidebarMainPage({ toggleSidebar }) {
             })}
             <div className='add-widget-section'>
                 {!isFormVisible ? (
-                    <button className="add-widget-button" onClick={() => setIsFormVisible(true)}>
+                    <button className="sidebar-add-widget-button" onClick={() => setIsFormVisible(true)}>
                         + Add New Widget
                     </button>
                 ) : (
