@@ -1,5 +1,5 @@
 import React from "react";
-import './WidgetDashboardContainer.css'
+import './WidgetDashboardContainer.css';
 
 const EmptyWidgetContainer = ({ onAddButtonClick }) => (
     <div className='widget-container'>
