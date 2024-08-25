@@ -17,7 +17,7 @@ const Home = () => {
                 <div className="home-name">CNAPP Dashboard</div>
                 {/* Add Widget button to toggle sidebar */}
                 <button onClick={toggleSidebar} className="add-widget-button">
-                    Add Widget
+                    +Add Widget
                 </button>
             </div>
 
