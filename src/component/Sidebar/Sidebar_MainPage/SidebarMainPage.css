@@ -37,8 +37,20 @@
     font-weight: bolder;
     font-size: 1.1rem;
     border: 1px solid black;
-    color: blue;
+    display: flex;
+    align-items: center;
+
+
 }
+.sidebar-widget-list {
+
+}
+
+.sidebar-widget-list input[type="checkbox"] {
+    margin-right: 10px;
+    accent-color: blue;
+}
+
 .sidebar-widget-name{
     margin-left: 0.2rem;
 }

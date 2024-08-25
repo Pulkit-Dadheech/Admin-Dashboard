@@ -138,18 +138,20 @@ export const dashboardSlice = createSlice({
                 dashboard.dashboard_data.push({
                     id: nanoid(),
                     widget_name: widgetName,
-                    widget_selected: false
+                    widget_type: 'Doughnut',
+                    widget_data: [],
+                    widget_selected: true
                 });
             }
         },
 
         removeWidget: (state, action) => {
-            const {dashboardId, widgetId} = action.payload;
+            const { dashboardId, widgetId } = action.payload;
             const dashboard = state.subDashboard.find(
                 (dashboard) => dashboard.id === dashboardId
             );
             if (dashboard) {
-                dashboard.dashboard_category = dashboard.dashboard_data.filter(
+                dashboard.dashboard_data = dashboard.dashboard_data.filter(
                     (widget) => widget.id !== widgetId
                 );
             }

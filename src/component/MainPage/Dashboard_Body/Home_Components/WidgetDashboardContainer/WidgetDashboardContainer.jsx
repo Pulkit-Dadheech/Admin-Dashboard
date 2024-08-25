@@ -39,7 +39,7 @@ export default function WidgetDashboardCreator({ toggleSidebar }) {
                                     onAddButtonClick={() => handleAddButtonClick(dashboard.id)}
                                 />
                             ))}
-                        {!searchData && Array(3 - dashboard.dashboard_data.length).fill().map((_, index) => (
+                        {!searchData && dashboard.dashboard_data.length<3 && Array(3 - dashboard.dashboard_data.length ).fill().map((_, index) => (
                             <EmptyWidgetContainer
                                 key={`empty-${index}`}
                                 onAddButtonClick={() => handleAddButtonClick(dashboard.id)}

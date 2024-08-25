@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
+import { FaTrash } from 'react-icons/fa'; // Import the trash icon from FontAwesome
 
-export default function EditableLabel({ initialValue, onSave }) {
+export default function EditableLabel({ initialValue, onSave, onDelete }) {
     const [isEditing, setIsEditing] = useState(false);
     const [inputValue, setInputValue] = useState(initialValue);
 
@@ -19,13 +20,12 @@ export default function EditableLabel({ initialValue, onSave }) {
             onSave(inputValue);
             setIsEditing(false);
         } else {
-            // Optionally, you can handle empty values here
             alert('Widget name cannot be empty');
         }
     }
 
     return (
-        <div className="editable-label">
+        <div className="editable-label" style={{ display: 'flex', alignItems: 'center' }}>
             {isEditing ? (
                 <input
                     type="text"
@@ -40,6 +40,10 @@ export default function EditableLabel({ initialValue, onSave }) {
                     {inputValue}
                 </span>
             )}
+            {/* Delete button with a trash icon */}
+            <button onClick={onDelete} className="delete-button" style={{ marginLeft: '10px', background: 'none', border: 'none', cursor: 'pointer' }}>
+                <FaTrash size={16} color="#d9534f" />
+            </button>
         </div>
     );
 }
