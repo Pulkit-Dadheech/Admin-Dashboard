@@ -4,6 +4,7 @@ import { updateSelectedDashboard } from "../../features/widgets/dashboardSlice";
 import { Chart as ChartJs, ArcElement, Tooltip, Legend, CategoryScale, LinearScale, BarElement } from 'chart.js';
 import { Doughnut, Bar } from 'react-chartjs-2';
 import ChartLegend from './ChartLegend';
+import React from "react";
 
 ChartJs.register(ArcElement, Tooltip, Legend, CategoryScale, LinearScale, BarElement);
 
@@ -70,6 +71,10 @@ export default function WidgetDashboardCreator({ toggleSiderbar }) {
                                     {widget.widget_selected && widget.widget_name !== '' ? (
                                         <>
                                             <div className="widget-title">{widget.widget_name}</div>
+                                            <div>
+                                                <span className={'legend-text'} style={{fontSize: "30px"}}>{widget.widget_data[0]?.datasets[0]?.data.reduce((acc, value) => acc + value, 0)} </span>
+                                                <span>{widget.widget_data[0]?.datasets[0]?.label && widget.widget_data[0].datasets[0].label}</span>
+                                            </div>
                                             {widget.widget_data && widget.widget_data.length > 0 && widget.widget_data[0].labels ? (
                                                 <div className="widget-body-container">
                                                     <div className="chart-legend-container">
@@ -98,7 +103,8 @@ export default function WidgetDashboardCreator({ toggleSiderbar }) {
                                                                 />
                                                             )
                                                         )}
-                                                        <ChartLegend data={widget.widget_data[0]} type={widget.widget_type} />
+                                                        <ChartLegend data={widget.widget_data[0]}
+                                                                     type={widget.widget_type}/>
                                                     </div>
                                                 </div>
                                             ) : (

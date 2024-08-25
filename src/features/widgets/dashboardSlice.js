@@ -64,29 +64,14 @@ const initialState = {
                     widget_name: 'Image Risk Assessment',
                     widget_type: 'Bar',
                     widget_data: [{
-                        labels: ['Total Vulnerabilities'],
+                        labels: ['Critical', 'High', 'Medium', 'Low'],
                         datasets: [
                             {
-                                label: 'Critical',
-                                data: [9],
-                                backgroundColor: '#b71c1c',
-                            },
-                            {
-                                label: 'High',
-                                data: [150],
-                                backgroundColor: '#f57c00',
-                            },
-                            {
-                                label: 'Medium',
-                                data: [400],
-                                backgroundColor: '#ffb300',
-                            },
-                            {
-                                label: 'Low',
-                                data: [911],
-                                backgroundColor: '#cfd8dc',
-                            },
-                        ],
+                                label: 'Vulnerabilities',
+                                data: [9, 150, 400, 911],
+                                backgroundColor: ['#b71c1c', '#f57c00', '#ffb300', '#cfd8dc'],
+                            }
+                        ]
                     }],
                     widget_selected: true
                 },
@@ -95,34 +80,14 @@ const initialState = {
                     widget_name: 'Image Security Issues',
                     widget_type: 'Bar',
                     widget_data: [{
-                        labels: ['Total Images'],
+                        labels: ['Critical', 'High', 'Medium', 'Low','Least'],
                         datasets: [
                             {
-                                label: 'Critical',
-                                data: [2],
-                                backgroundColor: '#850808',
-                            },
-                            {
-                                label: 'High',
-                                data: [2],
-                                backgroundColor: '#e72e48',
-                            },
-                            {
-                                label: 'Medium',
-                                data: [3],
-                                backgroundColor: '#d35e03',
-                            },
-                            {
-                                label: 'Low',
-                                data: [2],
-                                backgroundColor: '#ffb300',
-                            },
-                            {
-                                label: 'Least',
-                                data: [4],
-                                backgroundColor: '#84898c',
+                                label: 'Total Images',
+                                data: [2,2,3,2,4],
+                                backgroundColor: ['#850808', '#e72e48', '#d35e03', '#ffb300','#84898c'],
                             }
-                        ],
+                        ]
                     }],
                     widget_selected: true
                 }
