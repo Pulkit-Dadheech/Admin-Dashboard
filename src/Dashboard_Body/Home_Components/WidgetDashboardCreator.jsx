@@ -64,7 +64,6 @@ export default function WidgetDashboardCreator({toggleSiderbar}) {
                         {dashboard.dashboard_category}
                     </p>
                     <div className="widget-dashboard-container">
-                        {/* Filter widgets based on search data */}
                         {dashboard.dashboard_data
                             .filter(widget => !searchData || widget.widget_name.toLowerCase().includes(searchData.toLowerCase()))
                             .map((widget) => (
@@ -76,8 +75,9 @@ export default function WidgetDashboardCreator({toggleSiderbar}) {
                                                 <>
                                                     <span className="legend-text" style={{fontSize: "30px"}}>
                                                         {widget.widget_data[0].datasets[0].data.reduce((acc, value) => acc + value, 0)}
+                                                        <span style={{fontSize: "15px",fontWeight: '500',alignSelf: "center"}}> {widget.widget_data[0].datasets[0].label}</span>
                                                     </span>
-                                                    <span>{widget.widget_data[0].datasets[0].label}</span>
+
                                                 </>
                                             )}
                                             {widget.widget_data && widget.widget_data.length > 0 && widget.widget_data[0].labels ? (
@@ -93,7 +93,7 @@ export default function WidgetDashboardCreator({toggleSiderbar}) {
                                                                         responsive: true,
                                                                         plugins: {
                                                                             legend: {
-                                                                                display: false, // Disable the default legend
+                                                                                display: false,
                                                                             },
                                                                         },
                                                                     }}

@@ -20,13 +20,7 @@ export default function DashboardList() {
                         key={dashboard.id}
                         style={{
                             color: dashboard.id === selectedDashboardId ? 'black' : 'grey',
-                            fontWeight: 'bolder',
-                            // border: "none",
-                            borderTop: "none",
-                            borderLeft: "none",
-                            borderRight: "none",
-                            backgroundColor: "transparent",
-                            borderBottom: dashboard.id === selectedDashboardId ? '4px solid black' : '4px solid grey',
+                            borderBottom: dashboard.id === selectedDashboardId ? '0.2rem solid black' : '0.2rem solid grey',
                         }}
                         onClick={()=>handleButtonClick(dashboard.id)}
                     >
