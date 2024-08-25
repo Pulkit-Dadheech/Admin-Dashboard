@@ -39,11 +39,6 @@
     border: 1px solid black;
     display: flex;
     align-items: center;
-
-
-}
-.sidebar-widget-list {
-
 }
 
 .sidebar-widget-list input[type="checkbox"] {
